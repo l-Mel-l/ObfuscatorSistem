@@ -1,0 +1,55 @@
+import java.util.Scanner;
+public class textFile {
+    public static void main (String [] args){
+        System.out.println   ("Введите ваш IP-адресс");  //ваш ip, который будет проверяться
+        Scanner sc = new Scanner(System.in);
+        String StrIP = sc.nextLine();
+        Ip ip = new Ip();
+        int VvedIp = ip.ProvIP(StrIP);
+
+
+/*вывод информации по вашему
+ip
+ */
+        if(VvedIp == -1)   {
+            System.out.println    ("IP-адрес некорректный: неверная длинна IP-адресса");
+        } else if (VvedIp == 0) {System.out.println("IP-адрес некорректный: введено неверное значение в IP-адрессс");}
+        else {System.out.println("IP-адрес корректный");}
+    }
+
+}
+
+
+class Ip {                           //класс для проверки ip
+    public static int ProvIP(String ipAddress) {
+        if (ipAddress.endsWith(".")){return 0;}
+        String[] parts = ipAddress.split("\\.");
+        if (parts.length != 4) {
+              return -1;
+
+
+        }
+        for    (String part : parts)    {
+            try {
+                int num = Integer.parseInt(part);
+                if (num < 0 || num > 255) {
+                    return 0;
+                }
+            }     catch (NumberFormatException e) {
+                     return 0;
+               }
+        }
+        return 1;
+    }
+}
+/*Жареные куриные ножки
+1. Ножки куриные вымыть, обсушить, натереть солью и чесноком, поперчить. Можно посыпать любимыми специями.
+
+2. Чеснок нарезать пластинками. На коже куриных ножек сделать маленькие надрезы и вставить под кожу по несколько пластинок чеснока. Немного чеснока положить в сковороду поверх ножек.
+
+3. Хорошо разогреть сковороду с маслом. Обжарить куриные ножки на среднем огне до румяной корочки - минуты по две-три с каждой стороны.
+
+4. Уменьшить огонь и жарить курицу до готовности, периодически переворачивая, минут 15. Чтобы ножки хорошо прожарились, готовить их на малом огне под крышкой.
+
+5. Подавать жареные куриные ножки можно с любым гарниром и овощами.
+ */
